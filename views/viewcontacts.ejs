@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- styles.css -->
+    <link rel="stylesheet" href="/style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+
+    <title>Contact Book Management Website</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>View Contacts</h1>
+    </div>
+    <div class="contacts-search">
+      <form
+        class="search-form"
+        id="search-form"
+        method="GET"
+        action="/contacts/search"
+      >
+        <div class="form-group">
+          <label for="input" class="form-label">Search:</label><br />
+          <input type="search" id="input" name="input" required />
+        </div>
+        <input type="submit" id="submit" value="Search" />
+      </form>
+    </div>
+    <div class="contacts-body">
+      <% for (let i = 0; i < results.results.length; i += 1) { %>
+      <div class="contact">
+        <p>
+          Name: <%= results.results[i].firstname %> <%=
+          results.results[i].lastname %>
+        </p>
+        <p>Phone Number: <%= results.results[i].phonenumber %></p>
+      </div>
+      <% } %>
+    </div>
+    <div class="pages">
+      <% if (results.currentPage > 1) { %>
+      <a
+        href="/contacts?page=<%= results.currentPage - 1 %>&limit=<%= results.limit %>"
+        >Previous Page</a
+      >
+      <% } %>
+      <p>Page <%= results.currentPage %></p>
+      <% if (results.currentPage < results.totalPages) { %>
+      <a
+        href="/contacts?page=<%= results.currentPage + 1 %>&limit=<%= results.limit %>"
+        >Next Page</a
+      >
+      <% } %>
+    </div>
+    <div class="mainpage-link">
+      <a href="/">Back to Main Page</a>
+    </div>
+  </body>
+</html>

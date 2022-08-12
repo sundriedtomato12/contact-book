@@ -1,1 +1,3 @@
-# contact-book
+# Contact Book Website
+
+Using: NodeJs, MongoDB, Express
