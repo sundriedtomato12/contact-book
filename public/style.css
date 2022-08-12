@@ -3,5 +3,9 @@ p {
 }
 
 div.contact {
-  margin: 5px 0px 30px 0px;
+  margin: 10px;
+}
+
+div.contact:hover {
+  border: solid black 1px;
 }

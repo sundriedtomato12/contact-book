@@ -36,7 +36,10 @@
     </div>
     <div class="contacts-body">
       <% for (let i = 0; i < results.results.length; i += 1) { %>
-      <div class="contact">
+      <div
+        class="contact"
+        onclick="location.href='/contacts/<%= results.results[i]._id %>';"
+      >
         <p>
           Name: <%= results.results[i].firstname %> <%=
           results.results[i].lastname %>

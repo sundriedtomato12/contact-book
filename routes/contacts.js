@@ -75,11 +75,18 @@ router.post("/add", async (req, res) => {
 
 // Getting one contact
 router.get("/:id", getContact, (req, res) => {
-  res.send(res.contact.name);
+  const contact = res.contact;
+  res.render("viewcontact", { contact });
+});
+
+// Getting edit page for one contact
+router.get("/:id/edit", getContact, (req, res) => {
+  const contact = res.contact;
+  res.render("editcontact", { contact });
 });
 
 // Updating one contact
-router.patch("/:id/edit", getContact, async (req, res) => {
+router.put("/:id/edit", getContact, async (req, res) => {
   if (req.body.name != null) {
     res.contact.name = req.body.name;
   }
@@ -101,7 +108,9 @@ router.patch("/:id/edit", getContact, async (req, res) => {
 router.delete("/:id/delete", getContact, async (req, res) => {
   try {
     await res.contact.remove();
-    res.send(`Successfully deleted contact id ${req.params.id}`);
+    res.send(
+      `Successfully deleted contact!<br><a href='/'>Back to Main Page</a><br>`
+    );
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

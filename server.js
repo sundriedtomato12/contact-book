@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost/contacts", {
   useNewUrlParser: true,
@@ -17,6 +18,8 @@ db.once("open", () => console.log("Connected to Database"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/", express.static("public"));
+// Override POST requests with query param ?_method=<METHOD> to be <METHOD> requests
+app.use(methodOverride("_method"));
 
 const contactsRouter = require("./routes/contacts");
 app.use("/contacts", contactsRouter);

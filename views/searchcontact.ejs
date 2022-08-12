@@ -23,7 +23,10 @@
     <div class="search-results-body">
       <% if (searchResults.firstnameResults.length > 0) { %> <% for (let i = 0;
       i < searchResults.firstnameResults.length; i += 1) { %>
-      <div class="contact">
+      <div
+        class="contact"
+        onclick="location.href='/contacts/<%= searchResults.firstnameResults[i]._id %>'"
+      >
         <p>
           Name: <%= searchResults.firstnameResults[i].firstname %> <%=
           searchResults.firstnameResults[i].lastname %>
@@ -45,6 +48,7 @@
     </div>
     <div class="mainpage-link">
       <a href="/">Back to Main Page</a>
+      <a href="/contacts?page=1&limit=5">Back to View Contacts</a>
     </div>
   </body>
 </html>

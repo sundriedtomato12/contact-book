@@ -25,7 +25,7 @@
         <form
           class="createcontact-form"
           id="createcontact-form"
-          action="/contacts/<%= contact.id %>/?_method=PATCH"
+          action="/contacts/<%= contact.id %>/edit"
           method="POST"
         >
           <div class="form-group">
@@ -59,7 +59,7 @@
               required
             />
           </div>
-          <input type="submit" id="submit" value="Create Contact" />
+          <input type="submit" id="submit" value="Edit Contact" />
         </form>
       </div>
       <div class="mainpage-link">
