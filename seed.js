@@ -12,11 +12,13 @@ const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
 
+// To seed data into database
 const seedDB = async () => {
   await Contact.deleteMany({});
 
   let seedProducts = [];
 
+  // generating data using faker
   for (let i = 0; i < 50; i += 1) {
     let newContact = {
       firstname: faker.name.firstName(),
@@ -29,6 +31,7 @@ const seedDB = async () => {
   await Contact.insertMany(seedProducts);
 };
 
+// calling seed data function and console logging for confirmation
 seedDB().then(() => {
   console.log("Data seeded successfully!");
 });

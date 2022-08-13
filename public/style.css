@@ -3,9 +3,16 @@ p {
 }
 
 div.contact {
-  margin: 10px;
+  padding: 10px;
+  width: 100%;
 }
 
 div.contact:hover {
   border: solid black 1px;
+  cursor: pointer;
+  margin: -1px;
+}
+
+.search-form {
+  margin: 5px;
 }
