@@ -8,6 +8,11 @@ const { getContact, formatString } = require("../functions.js");
  * /contacts/search:
  *  get:
  *    description: Use to get search for contacts with first name or last name that matches search term
+ *    parameters:
+ *      - in: query
+ *        name: input
+ *        type: string
+ *        description: search term
  *    responses:
  *      '200':
  *        description: Returns contacts with first name or last name that matches search term
@@ -33,7 +38,16 @@ router.get("/search", async (req, res) => {
  * @swagger
  * /contacts:
  *  get:
- *    description: Use to get contacts
+ *    description: Use to get contacts with page number and limit
+ *    parameters:
+ *      - in: query
+ *        name: page
+ *        type: number
+ *        description: page number
+ *      - in: query
+ *        name: limit
+ *        type: number
+ *        description: number of contacts per page
  *    responses:
  *      '200':
  *        description: Returns list of contacts from database, sorted in ascending order of first name.
@@ -77,6 +91,19 @@ router.get("/add", (req, res) => {
  * /contacts/add:
  *  post:
  *    description: Use to create new contact
+ *    parameters:
+ *      - in: formData
+ *        name: firstname
+ *        type: string
+ *        description: contact's first name
+ *      - in: formData
+ *        name: lastname
+ *        type: string
+ *        description: contact's last name
+ *      - in: formData
+ *        name: phonenumber
+ *        type: string
+ *        description: contact's phone number
  *    responses:
  *      '201':
  *        description: Successfully added new contact to database
@@ -104,9 +131,15 @@ router.post("/add", async (req, res) => {
 
 /**
  * @swagger
- * /contacts/:id:
+ * /contacts/{id}:
  *  get:
  *    description: Use to get details of one contact
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        type: string
+ *        description: The user ID
  *    responses:
  *      '200':
  *        description: Returns details of one contact together with options to edit or delete contact
@@ -118,9 +151,15 @@ router.get("/:id", getContact, (req, res) => {
 
 /**
  * @swagger
- * /contacts/:id/edit:
+ * /contacts/{id}/edit:
  *  get:
  *    description: Use to get page with form to edit details of selected contact
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        type: string
+ *        description: The user ID
  *    responses:
  *      '200':
  *        description: Returns form to edit details of contact with details rendered
@@ -132,9 +171,27 @@ router.get("/:id/edit", getContact, (req, res) => {
 
 /**
  * @swagger
- * /contacts/:id:
+ * /contacts/{id}:
  *  put:
  *    description: Use to edit details of selected contact
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        type: string
+ *        description: The user ID
+ *      - in: formData
+ *        name: firstname
+ *        type: string
+ *        description: contact's first name
+ *      - in: formData
+ *        name: lastname
+ *        type: string
+ *        description: contact's last name
+ *      - in: formData
+ *        name: phonenumber
+ *        type: string
+ *        description: contact's phone number
  *    responses:
  *      '200':
  *        description: Successfully edited details of contact
@@ -164,9 +221,15 @@ router.put("/:id", getContact, async (req, res) => {
 
 /**
  * @swagger
- * /contacts/:id:
+ * /contacts/{id}:
  *  delete:
  *    description: Use to delete contact from database
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        type: string
+ *        description: The user ID
  *    responses:
  *      '200':
  *        description: Successfully deleted from database
