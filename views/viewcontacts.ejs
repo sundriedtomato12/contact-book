@@ -1,51 +1,56 @@
 <%- include('partials/header'); -%>
-<div class="header">
-  <h1>View Contacts</h1>
-</div>
-<div class="contacts-search">
-  <form
-    class="search-form"
-    id="search-form"
-    method="GET"
-    action="/contacts/search"
-  >
-    <div class="form-group">
-      <label for="input" class="form-label">Search:</label><br />
-      <input type="search" id="input" name="input" required />
-    </div>
-    <input type="submit" id="submit" value="Search" />
-  </form>
-</div>
-<div class="contacts-body">
-  <% for (let i = 0; i < results.results.length; i += 1) { %>
-  <div
-    class="contact"
-    onclick="location.href='/contacts/<%= results.results[i]._id %>';"
-  >
-    <p>
-      Name: <%= results.results[i].firstname %> <%= results.results[i].lastname
-      %>
-    </p>
-    <p>Phone Number: <%= results.results[i].phonenumber %></p>
+<div class="container">
+  <div class="row">
+    <h1>View Contacts</h1>
   </div>
-  <% } %>
-</div>
-<div class="pages">
-  <% if (results.currentPage > 1) { %>
-  <a
-    href="/contacts?page=<%= results.currentPage - 1 %>&limit=<%= results.limit %>"
-    >Previous Page</a
-  >
-  <% } %>
-  <p>Page <%= results.currentPage %></p>
-  <% if (results.currentPage < results.totalPages) { %>
-  <a
-    href="/contacts?page=<%= results.currentPage + 1 %>&limit=<%= results.limit %>"
-    >Next Page</a
-  >
-  <% } %>
-</div>
-<div class="mainpage-link">
-  <a href="/">Back to Main Page</a>
+  <div class="row">
+    <form id="search-form" method="GET" action="/contacts/search">
+      <div class="mb-3">
+        <label for="input" class="form-label">Search:</label><br />
+        <input
+          type="search"
+          class="form-control"
+          id="input"
+          name="input"
+          required
+        />
+      </div>
+      <input type="submit" class="btn btn-primary" id="submit" value="Search" />
+    </form>
+  </div>
+  <div class="row" id="contacts-body">
+    <% for (let i = 0; i < results.results.length; i += 1) { %>
+    <div
+      class="contact"
+      onclick="location.href='/contacts/<%= results.results[i]._id %>';"
+    >
+      <p>
+        Name: <%= results.results[i].firstname %> <%=
+        results.results[i].lastname %>
+      </p>
+      <p>Phone Number: <%= results.results[i].phonenumber %></p>
+    </div>
+    <% } %>
+  </div>
+  <div class="row text-center">
+    <% if (results.currentPage > 1) { %>
+    <a
+      class="col"
+      href="/contacts?page=<%= results.currentPage - 1 %>&limit=<%= results.limit %>"
+      >Previous Page</a
+    >
+    <% } %>
+    <p class="col">Page <%= results.currentPage %></p>
+    <% if (results.currentPage < results.totalPages) { %>
+    <a
+      class="col"
+      href="/contacts?page=<%= results.currentPage + 1 %>&limit=<%= results.limit %>"
+      >Next Page</a
+    >
+    <% } %>
+  </div>
+  <div class="row text-center" id="mainpage-link">
+    <a href="/">Back to Main Page</a>
+  </div>
 </div>
 <%- include('partials/footer'); -%>

@@ -1,31 +1,49 @@
 <%- include('partials/header'); -%>
-<div class="createentry-body">
-  <div class="para-1">
+<div class="container">
+  <div class="row">
     <h1>Create New Contact</h1>
   </div>
-  <div class="form">
-    <form
-      class="createcontact-form"
-      id="createcontact-form"
-      action="/contacts/add"
-      method="POST"
-    >
-      <div class="form-group">
+  <div class="row">
+    <form id="createcontact-form" action="/contacts/add" method="POST">
+      <div class="mb-3">
         <label for="firstname" class="form-label">First Name</label><br />
-        <input type="text" id="firstname" name="firstname" required />
+        <input
+          class="form-control"
+          type="text"
+          id="firstname"
+          name="firstname"
+          required
+        />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <label for="lastname" class="form-label">Last Name</label><br />
-        <input type="text" id="lastname" name="lastname" required />
+        <input
+          class="form-control"
+          type="text"
+          id="lastname"
+          name="lastname"
+          required
+        />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <label for="phonenumber" class="form-label">Phone Number</label><br />
-        <input type="text" id="phonenumber" name="phonenumber" required />
+        <input
+          class="form-control"
+          type="text"
+          id="phonenumber"
+          name="phonenumber"
+          required
+        />
       </div>
-      <input type="submit" id="submit" value="Create Contact" />
+      <input
+        class="btn btn-primary"
+        type="submit"
+        id="submit"
+        value="Create Contact"
+      />
     </form>
   </div>
-  <div class="mainpage-link">
+  <div class="row text-center">
     <a href="/">Back to Main Page</a>
   </div>
 </div>

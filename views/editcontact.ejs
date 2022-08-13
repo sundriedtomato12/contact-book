@@ -1,18 +1,18 @@
 <%- include('partials/header'); -%>
-<div class="createentry-body">
+<div class="container">
   <div class="para-1">
     <h1>Edit Existing Contact</h1>
   </div>
-  <div class="form">
+  <div class="row">
     <form
-      class="createcontact-form"
       id="createcontact-form"
       action="/contacts/<%= contact.id %>/?_method=PUT"
       method="POST"
     >
-      <div class="form-group">
+      <div class="mb-3">
         <label for="firstname" class="form-label">First Name</label><br />
         <input
+          class="form-control"
           type="text"
           id="firstname"
           name="firstname"
@@ -20,9 +20,10 @@
           required
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <label for="lastname" class="form-label">Last Name</label><br />
         <input
+          class="form-control"
           type="text"
           id="lastname"
           name="lastname"
@@ -30,9 +31,10 @@
           required
         />
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <label for="phonenumber" class="form-label">Phone Number</label><br />
         <input
+          class="form-control"
           type="text"
           id="phonenumber"
           name="phonenumber"
@@ -40,10 +42,15 @@
           required
         />
       </div>
-      <input type="submit" id="submit" value="Edit Contact" />
+      <input
+        class="btn btn-primary"
+        type="submit"
+        id="submit"
+        value="Edit Contact"
+      />
     </form>
   </div>
-  <div class="mainpage-link">
+  <div class="row text-center">
     <a href="/">Back to Main Page</a>
   </div>
 </div>

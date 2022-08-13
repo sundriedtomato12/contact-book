@@ -3,7 +3,6 @@ const router = express.Router();
 const Contact = require("../models/contact");
 const { getContact, formatString } = require("../functions.js");
 
-// get contacts by search
 /**
  * @swagger
  * /contacts/search:
@@ -30,7 +29,6 @@ router.get("/search", async (req, res) => {
   }
 });
 
-// Getting contacts
 /**
  * @swagger
  * /contacts:
@@ -61,7 +59,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Getting to page to create one contact
 /**
  * @swagger
  * /contacts/add:
@@ -75,7 +72,6 @@ router.get("/add", (req, res) => {
   res.status(200).render("createcontact");
 });
 
-// Creating one contact
 /**
  * @swagger
  * /contacts/add:
@@ -106,7 +102,6 @@ router.post("/add", async (req, res) => {
   }
 });
 
-// Getting one contact
 /**
  * @swagger
  * /contacts/:id:
@@ -121,7 +116,6 @@ router.get("/:id", getContact, (req, res) => {
   res.status(200).render("viewcontact", { contact });
 });
 
-// Getting edit page for one contact
 /**
  * @swagger
  * /contacts/:id/edit:
@@ -136,7 +130,6 @@ router.get("/:id/edit", getContact, (req, res) => {
   res.status(200).render("editcontact", { contact });
 });
 
-// Updating one contact
 /**
  * @swagger
  * /contacts/:id:
@@ -169,7 +162,6 @@ router.put("/:id", getContact, async (req, res) => {
   }
 });
 
-// Deleting one contact
 /**
  * @swagger
  * /contacts/:id:

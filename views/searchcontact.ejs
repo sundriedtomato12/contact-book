@@ -1,36 +1,41 @@
 <%- include('partials/header'); -%>
-<div class="header">
-  <h2>Results for "<%= searchResults.input %>"</h2>
-</div>
-<div class="search-results-body">
-  <% if (searchResults.firstnameResults.length > 0) { %> <% for (let i = 0; i <
-  searchResults.firstnameResults.length; i += 1) { %>
-  <div
-    class="contact"
-    onclick="location.href='/contacts/<%= searchResults.firstnameResults[i]._id %>'"
-  >
-    <p>
-      Name: <%= searchResults.firstnameResults[i].firstname %> <%=
-      searchResults.firstnameResults[i].lastname %>
-    </p>
-    <p>Phone Number: <%= searchResults.firstnameResults[i].phonenumber %></p>
+<div class="container">
+  <div class="row">
+    <h2>Results for "<%= searchResults.input %>"</h2>
   </div>
-  <% } %> <% } %> <% if (searchResults.lastnameResults.length > 0) { %> <% for
-  (let j = 0; j < searchResults.lastnameResults.length; j += 1) { %>
-  <div class="contact">
-    <p>
-      Name: <%= searchResults.lastnameResults[j].firstname %> <%=
-      searchResults.lastnameResults[j].lastname %>
-    </p>
-    <p>Phone Number: <%= searchResults.lastnameResults[j].phonenumber %></p>
+  <div class="row">
+    <% if (searchResults.firstnameResults.length > 0) { %> <% for (let i = 0; i
+    < searchResults.firstnameResults.length; i += 1) { %>
+    <div
+      class="contact"
+      onclick="location.href='/contacts/<%= searchResults.firstnameResults[i]._id %>'"
+    >
+      <p>
+        Name: <%= searchResults.firstnameResults[i].firstname %> <%=
+        searchResults.firstnameResults[i].lastname %>
+      </p>
+      <p>Phone Number: <%= searchResults.firstnameResults[i].phonenumber %></p>
+    </div>
+    <% } %> <% } %> <% if (searchResults.lastnameResults.length > 0) { %> <% for
+    (let j = 0; j < searchResults.lastnameResults.length; j += 1) { %>
+    <div
+      class="contact"
+      onclick="location.href='/contacts/<%= searchResults.lastnameResults[j]._id %>'"
+    >
+      <p>
+        Name: <%= searchResults.lastnameResults[j].firstname %> <%=
+        searchResults.lastnameResults[j].lastname %>
+      </p>
+      <p>Phone Number: <%= searchResults.lastnameResults[j].phonenumber %></p>
+    </div>
+    <% } %> <% } if (searchResults.firstnameResults.length == 0 &&
+    searchResults.lastnameResults.length == 0) { %>
+    <p>There are no results!</p>
+    <% } %>
   </div>
-  <% } %> <% } if (searchResults.firstnameResults.length == 0 &&
-  searchResults.lastnameResults.length == 0) { %>
-  <p>There are no results!</p>
-  <% } %>
-</div>
-<div class="mainpage-link">
-  <a href="/">Back to Main Page</a>
-  <a href="/contacts?page=1&limit=10">Back to View Contacts</a>
+  <div class="row text-center">
+    <a class="col" href="/">Back to Main Page</a>
+    <a class="col" href="/contacts?page=1&limit=10">Back to View Contacts</a>
+  </div>
 </div>
 <%- include('partials/footer'); -%>
