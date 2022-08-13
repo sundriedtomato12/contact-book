@@ -55,9 +55,11 @@ router.get("/add", (req, res) => {
 // Creating one contact
 router.post("/add", async (req, res) => {
   console.log(req.body);
+  const formattedFN = formatString(req.body.firstname);
+  const formattedLN = formatString(req.body.lastname);
   const contact = new Contact({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
+    firstname: formattedFN,
+    lastname: formattedLN,
     phonenumber: req.body.phonenumber,
   });
 
@@ -86,26 +88,29 @@ router.get("/:id/edit", getContact, (req, res) => {
 });
 
 // Updating one contact
-router.put("/:id/edit", getContact, async (req, res) => {
-  if (req.body.name != null) {
-    res.contact.name = req.body.name;
+router.put("/:id", getContact, async (req, res) => {
+  if (req.body.firstname != null) {
+    res.contact.firstname = req.body.firstname;
   }
   if (req.body.phonenumber != null) {
-    res.contact.phonenumber = req.body.phonenumber;
+    res.contact.lastname = req.body.lastname;
   }
   if (req.body.email != null) {
-    res.contact.email = req.body.email;
+    res.contact.phonenumber = req.body.phonenumber;
   }
 
   try {
     const updatedContact = await res.contact.save();
-    res.json(updatedContact);
+    res.send(
+      `Successfully edited contact!<br><a href='/'>Back to Main Page</a><br>`
+    );
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 // Deleting one contact
-router.delete("/:id/delete", getContact, async (req, res) => {
+router.delete("/:id", getContact, async (req, res) => {
+  console.log("deleting");
   try {
     await res.contact.remove();
     res.send(
