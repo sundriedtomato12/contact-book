@@ -24,7 +24,10 @@
     </p>
     <p>Phone Number: <%= searchResults.lastnameResults[j].phonenumber %></p>
   </div>
-  <% } %> <% } %>
+  <% } %> <% } if (searchResults.firstnameResults.length == 0 &&
+  searchResults.lastnameResults.length == 0) { %>
+  <p>There are no results!</p>
+  <% } %>
 </div>
 <div class="mainpage-link">
   <a href="/">Back to Main Page</a>
