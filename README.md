@@ -1,6 +1,6 @@
 # Contact Book Website
 
-Using: NodeJs, MongoDB, Express, Boostrap
+Using: NodeJs, MongoDB, Express, Bootstrap
 
 # How to setup
 
